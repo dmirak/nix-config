@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -20,6 +20,14 @@
 
   services.displayManager.ly.enable = true;
 
+  services.greetd = {
+    enable = true;
+    #settings.default_session = {
+      #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
+      #user = "greeter";
+    #};
+  };
+
   users.users.david = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -30,7 +38,8 @@
 
   programs.firefox.enable = true;
   programs.zsh.enable = true;
-
+  programs.niri.enable = true;
+  
   environment.systemPackages = with pkgs; [
     vim
     wget

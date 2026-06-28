@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.noctalia.homeModules.default ];
+
   home.username = "david";
   home.homeDirectory = "/home/david";
   home.stateVersion = "26.05";
@@ -12,6 +14,10 @@
   };
 
   programs.zsh.enable = true;
+
+  programs.noctalia = {
+    enable = true;
+  };
 
   home.packages = with pkgs; [
     neovim
