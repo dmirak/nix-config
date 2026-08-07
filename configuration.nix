@@ -36,15 +36,24 @@
     ];
   };
 
-  programs.firefox.enable = true;
   programs.zsh.enable = true;
   programs.niri.enable = true;
-  
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     wget
     git
     kitty
+    wireplumber # provides wpctl, used by niri's volume/mic binds
   ];
 
   fonts.packages = with pkgs; [
@@ -52,6 +61,8 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05"; 
 }

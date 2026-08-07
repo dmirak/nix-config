@@ -1,0 +1,35 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "bios",
+    "board",
+    "host",
+    "kernel",
+    "uptime",
+    "processes",
+    "packages",
+    "shell",
+    "display",
+    "wm",
+    "wmtheme",
+    "font",
+    "terminal",
+    "terminalfont",
+    {
+        "type": "cpu",
+        "showPeCoreCount": true,
+	"temp": true
+    },
+    "cpuusage",
+    {
+        "type": "gpu",
+	"driverSpecific": true,
+	"temp": true
+    },
+    "memory",
+    "disk",
+  ]
+}
