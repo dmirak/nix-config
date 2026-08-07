@@ -1,5 +1,12 @@
 { config, pkgs, inputs, ... }:
 
+let
+  # Absolute (not ./relative) so mkOutOfStoreSymlink points at the live
+  # checkout instead of the ephemeral store copy Nix makes to evaluate the
+  # flake -- a relative path here resolves against that store copy, which
+  # has no GC root and can vanish out from under the symlink.
+  dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles";
+in
 {
   imports = [ inputs.noctalia.homeModules.default ];
 
@@ -55,21 +62,21 @@
   ];
 
   xdg.configFile."niri/config.kdl".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/niri/config.kdl;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/niri/config.kdl";
   xdg.configFile."niri/noctalia.kdl".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/niri/noctalia.kdl;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/niri/noctalia.kdl";
 
   xdg.configFile."noctalia/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/noctalia/settings.json;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/noctalia/settings.json";
   xdg.configFile."noctalia/colors.json".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/noctalia/colors.json;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/noctalia/colors.json";
   xdg.configFile."noctalia/plugins.json".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/noctalia/plugins.json;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/noctalia/plugins.json";
   xdg.configFile."noctalia/user-templates.toml".source =
-    config.lib.file.mkOutOfStoreSymlink ./dotfiles/noctalia/user-templates.toml;
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/noctalia/user-templates.toml";
 
   home.file.".local/bin/wallpaper-random.sh" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/scripts/wallpaper-random.sh;
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/scripts/wallpaper-random.sh";
     executable = true;
   };
 
@@ -90,13 +97,13 @@
     Install.WantedBy = [ "timers.target" ];
   };
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nvim";
 
-  xdg.configFile."yazi".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/yazi;
-  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/kitty;
+  xdg.configFile."yazi".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/yazi";
+  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kitty";
 
-  xdg.configFile."fuzzel".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/fuzzel;
-  xdg.configFile."btop".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop;
-  xdg.configFile."fastfetch".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/fastfetch;
+  xdg.configFile."fuzzel".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/fuzzel";
+  xdg.configFile."btop".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/btop";
+  xdg.configFile."fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/fastfetch";
 }
 
