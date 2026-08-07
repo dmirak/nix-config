@@ -77,7 +77,6 @@ in
 
   home.file.".local/bin/wallpaper-random.sh" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/scripts/wallpaper-random.sh";
-    executable = true;
   };
 
   systemd.user.services.wallpaper-rotate = {
