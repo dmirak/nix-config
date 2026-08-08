@@ -20,24 +20,23 @@
 
   services.displayManager.ly.enable = true;
 
-  services.greetd = {
-    enable = true;
-    #settings.default_session = {
-      #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
-      #user = "greeter";
-    #};
-  };
-
   users.users.david = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       tree
     ];
   };
 
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+
   programs.zsh.enable = true;
   programs.niri.enable = true;
+  # Stable niri (niri-flake's default) predates the "include" directive
+  # (added Oct 2025) and "maximize-window-to-edges", both used in
+  # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.
+  programs.niri.package = pkgs.niri-unstable;
 
   security.rtkit.enable = true;
   services.pipewire = {

@@ -699,7 +699,7 @@
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/home/dmira/Pictures/Wallpapers/",
+        "directory": "/home/david/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [

@@ -28,7 +28,10 @@ in
       plugins = [ "git" "z" "sudo" "colored-man-pages" "command-not-found" ];
     };
     initContent = "fastfetch";
-  };
+    shellAliases = {
+	note = "nvim ~/.notes.md";
+    };
+};
 
   home.sessionVariables.EDITOR = "nvim";
 
