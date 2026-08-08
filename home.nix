@@ -36,6 +36,13 @@ in
 
   home.sessionVariables.EDITOR = "nvim";
 
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+  };
+
   # legacy-v4 module namespace is `noctalia-shell`, not `noctalia` (that's v5's).
   programs.noctalia-shell = {
     enable = true;
