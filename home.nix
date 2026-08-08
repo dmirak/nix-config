@@ -30,6 +30,7 @@ in
     initContent = "fastfetch";
     shellAliases = {
 	note = "nvim ~/.notes.md";
+	nixos-update = "sudo nixos-rebuild switch --flake ~/nix-config#nixos-pc";
     };
 };
 
