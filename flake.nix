@@ -27,15 +27,15 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./hosts/nixos-pc/configuration.nix
 	niri.nixosModules.niri
-        home-manager.nixosModules.home-manager 
+        home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
 	    extraSpecialArgs = { inherit inputs; };
-            users.david = import ./home.nix;
+            users.david = import ./home/david.nix;
             backupFileExtension = "backup";
           };
         }
