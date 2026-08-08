@@ -31,6 +31,7 @@
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
+  programs.xwayland.enable = true;
   programs.zsh.enable = true;
   programs.niri.enable = true;
   # Stable niri (niri-flake's default) predates the "include" directive
