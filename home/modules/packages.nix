@@ -12,5 +12,6 @@
     playerctl
     brightnessctl
     orca
+    prismlauncher
   ];
 }
