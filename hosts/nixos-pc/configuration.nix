@@ -54,6 +54,7 @@
     git
     kitty
     wireplumber # provides wpctl, used by niri's volume/mic binds
+    xwayland-satellite
   ];
 
   fonts.packages = with pkgs; [
