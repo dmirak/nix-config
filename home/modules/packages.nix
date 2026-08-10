@@ -13,5 +13,6 @@
     brightnessctl
     orca
     prismlauncher
+    discord
   ];
 }
