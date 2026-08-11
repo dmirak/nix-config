@@ -4,6 +4,7 @@
     ./modules/git.nix
     ./modules/zsh.nix
     ./modules/firefox.nix
+    ./modules/librewolf.nix
     ./modules/niri.nix
     ./modules/noctalia.nix
     ./modules/nvim.nix
