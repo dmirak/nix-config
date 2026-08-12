@@ -660,7 +660,11 @@ binds {
 
 // NixOS's noctalia-shell package wraps `qs` with QS_CONFIG_PATH baked in,
 // so it's launched directly rather than via `qs -c noctalia-shell`.
-spawn-at-startup "noctalia-shell"
+//
+// Wallhaven API key is read from a local, untracked file (not this repo)
+// and passed via env var, which noctalia-shell prioritizes over the
+// (blank) wallhavenApiKey field in dotfiles/noctalia/settings.json.
+spawn-at-startup "sh" "-c" "NOCTALIA_WALLHAVEN_API_KEY=$(cat ~/.config/noctalia/wallhaven-api-key 2>/dev/null) exec noctalia-shell"
 
 
 include "./noctalia.kdl"

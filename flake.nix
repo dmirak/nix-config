@@ -16,7 +16,7 @@
 
     noctalia = {
       # Pinned to the legacy 4.x line while v5 (default branch) is still
-      # being configured. See dotfiles/STRUCTURE.md.
+      # being configured. See CLAUDE.md.
       url = "github:noctalia-dev/noctalia-shell/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
