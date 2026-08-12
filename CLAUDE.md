@@ -95,6 +95,11 @@ with editing this repo. Use them proactively, not just when asked:
 
 - Commit messages are short and lowercase, no conventional-commits prefixes
   (e.g. `librewolf`, `discord`, `prism launcher`).
+- Indentation: tabs everywhere, except `.nix` files, which use 2 spaces.
+  Nix itself is whitespace-insensitive, but every formatter in the
+  ecosystem (`nixfmt`, `nixpkgs-fmt`, `alejandra`) hardcodes 2 spaces with
+  no tabs option, and nixpkgs itself is formatted that way — fighting that
+  isn't worth it. Everywhere else (Lua, shell, TOML, KDL) use tabs.
 
 ## Sensitive data
 
