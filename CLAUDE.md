@@ -53,6 +53,35 @@ Adding a new program: create `home/modules/<name>.nix`, add it to the
 - Dry-run a change before switching: `nixos-rebuild build --flake .` from
   the repo root
 - There is no CI or test suite — "does it build" is the bar
+- After making any change to this repo, run `nixos-rebuild build --flake .`
+  from the repo root to verify it builds. This does not require sudo and
+  does not create a new generation. Do not run `nixos-rebuild switch`
+  unless explicitly asked.
+- Once the build verifies successfully, always commit the change (stage
+  only the specific files touched, not `-A`/`.`). Do not wait to be asked.
+  Do NOT add a "Co-Authored-By: Claude" (or similar) trailer to the commit
+  message — commit as if written entirely by the user.
+
+## Maintenance tooling
+
+These are installed via `home/modules/packages.nix` specifically to help
+with editing this repo. Use them proactively, not just when asked:
+
+- `gh` — any GitHub interaction (issues, PRs, checks).
+- `statix check .` — Nix anti-pattern linter; run after editing any
+  `.nix` file, alongside the `nixos-rebuild build` check.
+- `deadnix .` — finds unused bindings/imports in `.nix` files; run after
+  editing or removing code from a module.
+- `shellcheck` — lint any shell scripts under `dotfiles/scripts/` before
+  handing them back.
+- `jq` — inspect/edit JSON dotfiles precisely (e.g.
+  `dotfiles/noctalia/settings.json`, `colors.json`) instead of freehand
+  text edits.
+- `taplo` — lint/format TOML dotfiles (e.g.
+  `dotfiles/yazi/flavors/noctalia.yazi/flavor.toml`).
+- `fd` — prefer over `find` for locating files in this repo.
+- `difftastic` (`difft`) — structural diff for reviewing changes,
+  especially in Nix/TOML/JSON where a plain line diff is noisy.
 
 ## Pins (don't casually bump)
 

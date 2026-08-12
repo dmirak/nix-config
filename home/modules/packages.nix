@@ -14,5 +14,13 @@
     orca
     prismlauncher
     discord
+    gh
+    statix
+    deadnix
+    shellcheck
+    jq
+    fd
+    taplo
+    difftastic
   ];
 }
