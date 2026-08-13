@@ -2,22 +2,22 @@ local M = {}
 
 function M.setup()
   require('base16-colorscheme').setup {
-    base00 = '#0e141c',
-    base01 = '#1a2028',
-    base02 = '#252a33',
-    base03 = '#8691a4',
-    base04 = '#bcc7db',
-    base05 = '#dde2ee',
-    base06 = '#dde2ee',
-    base07 = '#dde2ee',
-    base08 = '#ffb4ab',
-    base09 = '#a3c9fe',
-    base0A = '#81d3de',
-    base0B = '#4ed8e8',
-    base0C = '#a3c9fe',
-    base0D = '#4ed8e8',
-    base0E = '#81d3de',
-    base0F = '#93000a',
+    base00 = '#291a14',
+    base01 = '#452c21',
+    base02 = '#3e271e',
+    base03 = '#74655f',
+    base04 = '#b6b1af',
+    base05 = '#f3f2f2',
+    base06 = '#f3f2f2',
+    base07 = '#f3f2f2',
+    base08 = '#ca3d04',
+    base09 = '#c3fb37',
+    base0A = '#fbd137',
+    base0B = '#fc8150',
+    base0C = '#dafc82',
+    base0D = '#fda582',
+    base0E = '#fce282',
+    base0F = '#4c1600',
   }
 
   -- transparency: strip backgrounds after the base16 colorscheme applies
