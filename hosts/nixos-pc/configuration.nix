@@ -29,6 +29,12 @@
     ];
   };
 
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-uuid/12BA4C35BA4C181D";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1000" "gid=100" "umask=022" ];
+  };
+
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   programs.xwayland.enable = true;
