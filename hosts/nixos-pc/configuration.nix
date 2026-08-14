@@ -32,9 +32,9 @@
   fileSystems."/".options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
 
   fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/12BA4C35BA4C181D";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" ];
+    device = "/dev/disk/by-uuid/ecb93dad-adab-45a9-93db-98cfd2ed8b02";
+    fsType = "btrfs";
+    options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" "nofail" ];
   };
 
   fileSystems."/mnt/storage" = {
