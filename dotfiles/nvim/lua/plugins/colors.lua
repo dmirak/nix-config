@@ -1,8 +1,12 @@
 return {
     {
-	"RRethy/base16-nvim",
+	"folke/tokyonight.nvim",
+	priority = 1000,
 	config = function()
-	    require('matugen').setup()
+	    require('tokyonight').setup({
+		transparent = true,
+	    })
+	    vim.cmd.colorscheme('tokyonight')
 	end
     },
     {
