@@ -32,7 +32,31 @@
   fileSystems."/mnt/games" = {
     device = "/dev/disk/by-uuid/12BA4C35BA4C181D";
     fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" ];
+    options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" ];
+  };
+
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/1AA6B4B4A6B491AD";
+    fsType = "ntfs3";
+    options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" ];
+  };
+
+  fileSystems."/mnt/arch-root" = {
+    device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
+    fsType = "btrfs";
+    options = [ "subvol=@" "compress=zstd" "noatime" "nofail" ];
+  };
+
+  fileSystems."/mnt/arch-home" = {
+    device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" "noatime" "nofail" ];
+  };
+
+  fileSystems."/mnt/arch-boot" = {
+    device = "/dev/disk/by-uuid/76A3-4CC1";
+    fsType = "vfat";
+    options = [ "uid=1000" "gid=100" "umask=0077" "nofail" ];
   };
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];

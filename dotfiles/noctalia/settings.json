@@ -658,15 +658,7 @@
             },
             {
                 "enabled": true,
-                "id": "btop"
-            },
-            {
-                "enabled": true,
                 "id": "discord"
-            },
-            {
-                "enabled": true,
-                "id": "kitty"
             },
             {
                 "enabled": true,
@@ -679,6 +671,14 @@
             {
                 "enabled": true,
                 "id": "yazi"
+            },
+            {
+                "enabled": true,
+                "id": "kitty"
+            },
+            {
+                "enabled": true,
+                "id": "btop"
             }
         ],
         "enableUserTheming": true
