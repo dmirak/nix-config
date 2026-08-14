@@ -29,6 +29,8 @@
     ];
   };
 
+  fileSystems."/".options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
+
   fileSystems."/mnt/games" = {
     device = "/dev/disk/by-uuid/12BA4C35BA4C181D";
     fsType = "ntfs3";
