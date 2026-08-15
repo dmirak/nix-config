@@ -20,7 +20,7 @@
 
   services.displayManager.ly.enable = true;
 
-  boot.kernel.sysctl."vm.swappiness" = 10;
+  boot.kernel.sysctl."vm.swappiness" = 0;
 
   users.users.david = {
     isNormalUser = true;
