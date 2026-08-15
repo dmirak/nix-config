@@ -20,6 +20,8 @@
 
   services.displayManager.ly.enable = true;
 
+  boot.kernel.sysctl."vm.swappiness" = 10;
+
   users.users.david = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -38,9 +40,9 @@
   };
 
   fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/1AA6B4B4A6B491AD";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" ];
+    device = "/dev/disk/by-uuid/99eef260-1730-4e2d-ae30-7f19210dd08f";
+    fsType = "btrfs";
+    options = [ "compress=zstd" "noatime" "space_cache=v2" "nofail" ];
   };
 
   fileSystems."/mnt/arch-root" = {
