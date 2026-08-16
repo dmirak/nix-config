@@ -330,6 +330,16 @@ window-rule {
     default-column-width {}
 }
 
+// Pin Steam games to the top output (DP-3, at 0,0).
+// Many fullscreen games -- Civ 5 among them -- assume a fullscreen window
+// starts at screen origin. With two stacked 3440x1440 monitors the XWayland
+// root is 3440x2880, so a game placed on DP-1 (origin 0,1440) reads every
+// cursor Y as 1440 too large and its UI stops responding to the mouse.
+window-rule {
+    match app-id=r#"^steam_app_"#
+    open-on-output "DP-3"
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
