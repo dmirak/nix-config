@@ -13,6 +13,7 @@
     brightnessctl
     orca
     prismlauncher
+    protontricks # run mod installers inside a game's Proton prefix
     discord
     gh
     statix
