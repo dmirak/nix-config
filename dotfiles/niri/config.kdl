@@ -330,14 +330,17 @@ window-rule {
     default-column-width {}
 }
 
-// Pin Steam games to the top output (DP-3, at 0,0).
-// Many fullscreen games -- Civ 5 among them -- assume a fullscreen window
-// starts at screen origin. With two stacked 3440x1440 monitors the XWayland
-// root is 3440x2880, so a game placed on DP-1 (origin 0,1440) reads every
-// cursor Y as 1440 too large and its UI stops responding to the mouse.
+// Open games on the main monitor (DP-1, the bottom output).
+// Games that assume a fullscreen window starts at screen origin -- Civ 5
+// among them -- break here on their own: the XWayland root spans both
+// stacked outputs, so DP-1 sits at y=1440 and the cursor Y comes out one
+// screen too low, leaving the UI unclickable. Run those through gamescope
+// (`gamescope -W 3440 -H 1440 -f -- %command%` in the Steam launch options),
+// which hands the game a private display at origin.
 window-rule {
     match app-id=r#"^steam_app_"#
-    open-on-output "DP-3"
+    match app-id=r#"^gamescope$"#
+    open-on-output "DP-1"
 }
 
 // Open the Firefox picture-in-picture player as floating by default.

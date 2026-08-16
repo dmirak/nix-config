@@ -100,6 +100,13 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.steam.enable = true;
+
+  # Fullscreen games that assume their window starts at screen origin (Civ 5,
+  # among others) break on the bottom monitor: the XWayland root spans both
+  # stacked outputs, so DP-1 sits at y=1440 and the game reads every cursor Y
+  # one screen too low. gamescope gives the game a private nested display at
+  # origin, so it no longer sees the desktop layout.
+  programs.gamescope.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
