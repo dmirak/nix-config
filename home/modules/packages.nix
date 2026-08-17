@@ -14,7 +14,7 @@
     orca
     prismlauncher
     protontricks # run mod installers inside a game's Proton prefix
-    p7zip # extract .civ5mod and other 7z archives
+    p7zip
     discord
     gh
     statix
