@@ -57,10 +57,9 @@ Adding a new program: create `home/modules/<name>.nix`, add it to the
   from the repo root to verify it builds. This does not require sudo and
   does not create a new generation. Do not run `nixos-rebuild switch`
   unless explicitly asked.
-- Once the build verifies successfully, always commit the change (stage
-  only the specific files touched, not `-A`/`.`). Do not wait to be asked.
-  Do NOT add a "Co-Authored-By: Claude" (or similar) trailer to the commit
-  message — commit as if written entirely by the user.
+- Do not commit as part of the workflow. Leave verified changes in the
+  working tree and let the user review them. Commit only when explicitly
+  asked.
 
 ## Maintenance tooling
 
@@ -94,7 +93,13 @@ with editing this repo. Use them proactively, not just when asked:
 ## Conventions
 
 - Commit messages are short and lowercase, no conventional-commits prefixes
-  (e.g. `librewolf`, `discord`, `prism launcher`).
+  (e.g. `librewolf`, `discord`, `prism launcher`). Do NOT add a
+  "Co-Authored-By: Claude" (or similar) trailer — commit as if written
+  entirely by the user. Stage only the specific files touched, not `-A`/`.`.
+- Keep comments to a bare minimum. Prefer none: package lists, option
+  settings, and window rules should stand on their own. Add one only where
+  the reason for a line is genuinely non-obvious and can't be inferred from
+  the code, and keep it to a single line.
 - Indentation: tabs everywhere, except `.nix` files, which use 2 spaces.
   Nix itself is whitespace-insensitive, but every formatter in the
   ecosystem (`nixfmt`, `nixpkgs-fmt`, `alejandra`) hardcodes 2 spaces with

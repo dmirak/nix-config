@@ -330,13 +330,7 @@ window-rule {
     default-column-width {}
 }
 
-// Open games on the main monitor (DP-1, the bottom output).
-// Games that assume a fullscreen window starts at screen origin -- Civ 5
-// among them -- break here on their own: the XWayland root spans both
-// stacked outputs, so DP-1 sits at y=1440 and the cursor Y comes out one
-// screen too low, leaving the UI unclickable. Run those through gamescope
-// (`gamescope -W 3440 -H 1440 -f -- %command%` in the Steam launch options),
-// which hands the game a private display at origin.
+// DP-1 is at y=1440, so fullscreen games need gamescope to see origin (0,0)
 window-rule {
     match app-id=r#"^steam_app_"#
     match app-id=r#"^gamescope$"#
