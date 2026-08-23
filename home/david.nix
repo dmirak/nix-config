@@ -14,6 +14,7 @@
     ./modules/btop.nix
     ./modules/fastfetch.nix
     ./modules/wallpaper.nix
+    ./modules/civ5.nix
     ./modules/packages.nix
   ];
 

@@ -99,9 +99,12 @@
   
   nixpkgs.config.allowUnfree = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
 
-  # fullscreen games assume origin (0,0); DP-1 is at y=1440
+  # fullscreen games assume origin (0,0); Xwayland puts DP-1 at y=1440
   programs.gamescope.enable = true;
   hardware.graphics = {
     enable = true;
