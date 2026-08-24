@@ -2,8 +2,6 @@
 {
   home.packages = with pkgs; [
     ripgrep
-    nil
-    nixpkgs-fmt
     nodejs
     gcc
     claude-code
