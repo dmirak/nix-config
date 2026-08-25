@@ -685,9 +685,9 @@
     },
     "ui": {
         "boxBorderEnabled": false,
-        "fontDefault": "JetBrainsMono Nerd Font",
+        "fontDefault": "Liberation Sans",
         "fontDefaultScale": 1,
-        "fontFixed": "JetBrainsMono Nerd Font",
+        "fontFixed": "Maple Mono NF",
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
