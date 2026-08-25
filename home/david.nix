@@ -11,6 +11,7 @@
     ./modules/yazi.nix
     ./modules/kitty.nix
     ./modules/fuzzel.nix
+    ./modules/gtk.nix
     ./modules/btop.nix
     ./modules/fastfetch.nix
     ./modules/wallpaper.nix

@@ -94,7 +94,17 @@
   fonts.packages = with pkgs; [
     #nerd-fonts.jetbrains-mono
     maple-mono.NF-unhinted
+    noto-fonts
   ];
+
+  # without an explicit sans-serif, GTK's default Cantarell falls back to
+  # Noto Sans CJK, which renders latin text at CJK widths
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "Noto Sans" "Noto Sans CJK SC" ];
+    serif = [ "Noto Serif" "Noto Serif CJK SC" ];
+    monospace = [ "Maple Mono NF" ];
+    emoji = [ "Noto Color Emoji" ];
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
