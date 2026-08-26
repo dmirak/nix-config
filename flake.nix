@@ -20,6 +20,11 @@
       url = "github:noctalia-dev/noctalia-shell/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    creamlinux = {
+      url = "github:Novattz/creamlinux-installer";
+      flake = false;
+    };
   };
 
   outputs =

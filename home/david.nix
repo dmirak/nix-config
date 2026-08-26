@@ -16,6 +16,7 @@
     ./modules/fastfetch.nix
     ./modules/wallpaper.nix
     ./modules/civ5.nix
+    ./modules/creamlinux.nix
     ./modules/packages.nix
   ];
 
