@@ -43,7 +43,11 @@
       "temp": true
     },
     { "type": "memory", "key": "{#32}│  Memory" },
-    { "type": "disk", "key": "{#32}│  Disk" },
+    {
+      "type": "disk",
+      "key": "{#32}│  Disk",
+      "folders": "/"
+    },
     { "type": "custom", "format": "{#32}╰─" },
 
     { "type": "custom", "format": "{#33}╭─ Desktop" },
