@@ -9,7 +9,10 @@
       theme = "agnoster";
       plugins = [ "git" "z" "sudo" "colored-man-pages" "command-not-found" ];
     };
-    initContent = "fastfetch";
+    initContent = ''
+      DEFAULT_USER="$USER"
+      fastfetch
+    '';
     shellAliases = {
       note = "nvim ~/.notes.md";
       nixos-rebuild-switch = "sudo nixos-rebuild switch --flake ~/nix-config#nixos-pc";
