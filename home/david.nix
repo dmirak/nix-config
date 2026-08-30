@@ -9,6 +9,8 @@
     ./modules/noctalia.nix
     ./modules/nvim.nix
     ./modules/yazi.nix
+    ./modules/imv.nix
+    ./modules/vlc.nix
     ./modules/kitty.nix
     ./modules/fuzzel.nix
     ./modules/gtk.nix
