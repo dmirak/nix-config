@@ -1,13 +1,27 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.systemd-boot.edk2-uefi-shell.enable = false;
+  boot.loader.systemd-boot.extraEntries."arch.conf" = ''
+    title Arch Linux
+    efi /efi/edk2-uefi-shell/shell.efi
+    options -nointerrupt -nomap -noversion HD2b:EFI\GRUB\grubx64.efi
+    sort-key z_arch
+  '';
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -16,7 +30,7 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "America/Chicago"; 
+  time.timeZone = "America/Chicago";
 
   services.displayManager.ly.enable = true;
 
@@ -31,36 +45,67 @@
     ];
   };
 
-  fileSystems."/".options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" ];
+  fileSystems."/".options = [
+    "compress=zstd"
+    "noatime"
+    "discard=async"
+    "space_cache=v2"
+  ];
 
   fileSystems."/mnt/games" = {
     device = "/dev/disk/by-uuid/ecb93dad-adab-45a9-93db-98cfd2ed8b02";
     fsType = "btrfs";
-    options = [ "compress=zstd" "noatime" "discard=async" "space_cache=v2" "nofail" ];
+    options = [
+      "compress=zstd"
+      "noatime"
+      "discard=async"
+      "space_cache=v2"
+      "nofail"
+    ];
   };
 
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/99eef260-1730-4e2d-ae30-7f19210dd08f";
     fsType = "btrfs";
-    options = [ "compress=zstd" "noatime" "space_cache=v2" "nofail" ];
+    options = [
+      "compress=zstd"
+      "noatime"
+      "space_cache=v2"
+      "nofail"
+    ];
   };
 
   fileSystems."/mnt/arch-root" = {
     device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
     fsType = "btrfs";
-    options = [ "subvol=@" "compress=zstd" "noatime" "nofail" ];
+    options = [
+      "subvol=@"
+      "compress=zstd"
+      "noatime"
+      "nofail"
+    ];
   };
 
   fileSystems."/mnt/arch-home" = {
     device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
     fsType = "btrfs";
-    options = [ "subvol=@home" "compress=zstd" "noatime" "nofail" ];
+    options = [
+      "subvol=@home"
+      "compress=zstd"
+      "noatime"
+      "nofail"
+    ];
   };
 
   fileSystems."/mnt/arch-boot" = {
     device = "/dev/disk/by-uuid/76A3-4CC1";
     fsType = "vfat";
-    options = [ "uid=1000" "gid=100" "umask=0077" "nofail" ];
+    options = [
+      "uid=1000"
+      "gid=100"
+      "umask=0077"
+      "nofail"
+    ];
   };
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
@@ -100,14 +145,23 @@
   # without an explicit sans-serif, GTK's default Cantarell falls back to
   # Noto Sans CJK, which renders latin text at CJK widths
   fonts.fontconfig.defaultFonts = {
-    sansSerif = [ "Noto Sans" "Noto Sans CJK SC" ];
-    serif = [ "Noto Serif" "Noto Serif CJK SC" ];
+    sansSerif = [
+      "Noto Sans"
+      "Noto Sans CJK SC"
+    ];
+    serif = [
+      "Noto Serif"
+      "Noto Serif CJK SC"
+    ];
     monospace = [ "Maple Mono NF" ];
     emoji = [ "Noto Color Emoji" ];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   programs.steam = {
@@ -134,4 +188,3 @@
 
   system.stateVersion = "26.05";
 }
-
