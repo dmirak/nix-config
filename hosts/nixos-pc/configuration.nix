@@ -118,6 +118,16 @@
   # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.
   programs.niri.package = pkgs.niri-unstable;
 
+  # The GNOME portal niri-flake installs delegates FileChooser to
+  # org.gnome.portal.filechooser, which only a full GNOME session provides, so
+  # every save/open dialog silently fails. Hand that one interface to the GTK
+  # portal and leave the rest (screencast, etc.) with GNOME.
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.niri = {
+    default = [ "gnome" ];
+    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+  };
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
