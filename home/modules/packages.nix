@@ -22,5 +22,6 @@
     fd
     taplo
     difftastic
+    satty
   ];
 }
