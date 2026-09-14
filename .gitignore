@@ -1,2 +1,10 @@
 .claude/
 /result
+
+# noctalia color templates, rewritten on every wallpaper change
+dotfiles/noctalia/colors.json
+dotfiles/niri/noctalia.kdl
+dotfiles/kitty/themes/noctalia.conf
+dotfiles/fuzzel/themes/noctalia
+dotfiles/btop/themes/noctalia.theme
+dotfiles/yazi/flavors/noctalia.yazi/flavor.toml
