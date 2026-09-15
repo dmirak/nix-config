@@ -23,5 +23,6 @@
     taplo
     difftastic
     satty
+    obsidian
   ];
 }
