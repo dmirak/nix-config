@@ -19,6 +19,7 @@
     ./modules/wallpaper.nix
     ./modules/civ5.nix
     ./modules/creamlinux.nix
+    ./modules/minecraft-autoclick.nix
     ./modules/packages.nix
   ];
 

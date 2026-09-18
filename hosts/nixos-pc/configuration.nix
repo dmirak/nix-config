@@ -38,7 +38,7 @@
 
   users.users.david = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "ydotool" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
@@ -113,6 +113,10 @@
   programs.xwayland.enable = true;
   programs.zsh.enable = true;
   programs.niri.enable = true;
+  # ydotoold backend for minecraft-autoclick.sh: synthesizes input via
+  # /dev/uinput, so it works regardless of window focus restrictions on
+  # synthetic Wayland input.
+  programs.ydotool.enable = true;
   # Stable niri (niri-flake's default) predates the "include" directive
   # (added Oct 2025) and "maximize-window-to-edges", both used in
   # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.

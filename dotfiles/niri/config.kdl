@@ -656,6 +656,10 @@ binds {
 
     Mod+V hotkey-overlay-title="Open Clipboard History" { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
 
+    // Toggle: hold left click while Minecraft is focused, release on the
+    // next press (or automatically if focus leaves Minecraft).
+    MouseForward hotkey-overlay-title="Toggle Minecraft Autoclicker" { spawn-sh "$HOME/.local/bin/minecraft-autoclick.sh"; }
+
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
     // so they may, for example, forward the key presses as-is to a remote machine.
