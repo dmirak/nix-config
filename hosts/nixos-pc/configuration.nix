@@ -38,7 +38,11 @@
 
   users.users.david = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "ydotool" ];
+    extraGroups = [
+      "wheel"
+      "ydotool"
+      "lpadmin"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
@@ -139,6 +143,14 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+  };
+
+  services.printing.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 
   environment.systemPackages = with pkgs; [
