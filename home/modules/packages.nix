@@ -24,5 +24,7 @@
     difftastic
     satty
     obsidian
+    a2ps
+    ghostscript
   ];
 }
