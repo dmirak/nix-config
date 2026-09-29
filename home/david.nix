@@ -11,6 +11,7 @@
     ./modules/yazi.nix
     ./modules/imv.nix
     ./modules/vlc.nix
+    ./modules/libreoffice.nix
     ./modules/kitty.nix
     ./modules/fuzzel.nix
     ./modules/gtk.nix
