@@ -48,13 +48,27 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
-    printing.enable = true;
+    printing = {
+      enable = true;
+      browsed.enable = false;
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
     };
     xserver.videoDrivers = [ "nvidia" ];
+  };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Canon_TR4700_series";
+        deviceUri = "ipp://cE88DA900000.local/ipp/print";
+        model = "everywhere";
+      }
+    ];
+    ensureDefaultPrinter = "Canon_TR4700_series";
   };
 
   users.users.david = {
