@@ -24,15 +24,17 @@
     ./modules/packages.nix
   ];
 
-  home.username = "david";
-  home.homeDirectory = "/home/david";
-  home.stateVersion = "26.05";
+  home = {
+    username = "david";
+    homeDirectory = "/home/david";
+    stateVersion = "26.05";
 
-  home.pointerCursor.enable = true;
-  home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
+    pointerCursor = {
+      enable = true;
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+      gtk.enable = true;
+    };
   };
 }

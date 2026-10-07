@@ -26,5 +26,6 @@
     obsidian
     a2ps
     ghostscript
+    gimp
   ];
 }

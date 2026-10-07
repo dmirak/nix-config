@@ -11,20 +11,27 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        edk2-uefi-shell.enable = false;
+        extraEntries."arch.conf" = ''
+          title Arch Linux
+          efi /efi/edk2-uefi-shell/shell.efi
+          options -nointerrupt -nomap -noversion HD2b:EFI\GRUB\grubx64.efi
+          sort-key z_arch
+        '';
+      };
+      efi.canTouchEfiVariables = true;
+    };
 
-  boot.loader.systemd-boot.edk2-uefi-shell.enable = false;
-  boot.loader.systemd-boot.extraEntries."arch.conf" = ''
-    title Arch Linux
-    efi /efi/edk2-uefi-shell/shell.efi
-    options -nointerrupt -nomap -noversion HD2b:EFI\GRUB\grubx64.efi
-    sort-key z_arch
-  '';
+    # Use latest kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    kernel.sysctl."vm.swappiness" = 0;
+  };
 
   networking.hostName = "nixos-pc";
 
@@ -32,9 +39,23 @@
 
   time.timeZone = "America/Chicago";
 
-  services.displayManager.ly.enable = true;
-
-  boot.kernel.sysctl."vm.swappiness" = 0;
+  services = {
+    displayManager.ly.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    xserver.videoDrivers = [ "nvidia" ];
+  };
 
   users.users.david = {
     isNormalUser = true;
@@ -49,82 +70,88 @@
     ];
   };
 
-  fileSystems."/".options = [
-    "compress=zstd"
-    "noatime"
-    "discard=async"
-    "space_cache=v2"
-  ];
-
-  fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/ecb93dad-adab-45a9-93db-98cfd2ed8b02";
-    fsType = "btrfs";
-    options = [
+  fileSystems = {
+    "/".options = [
       "compress=zstd"
       "noatime"
       "discard=async"
       "space_cache=v2"
-      "nofail"
     ];
-  };
 
-  fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/99eef260-1730-4e2d-ae30-7f19210dd08f";
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "noatime"
-      "space_cache=v2"
-      "nofail"
-    ];
-  };
+    "/mnt/games" = {
+      device = "/dev/disk/by-uuid/ecb93dad-adab-45a9-93db-98cfd2ed8b02";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "noatime"
+        "discard=async"
+        "space_cache=v2"
+        "nofail"
+      ];
+    };
 
-  fileSystems."/mnt/arch-root" = {
-    device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
-    fsType = "btrfs";
-    options = [
-      "subvol=@"
-      "compress=zstd"
-      "noatime"
-      "nofail"
-    ];
-  };
+    "/mnt/storage" = {
+      device = "/dev/disk/by-uuid/99eef260-1730-4e2d-ae30-7f19210dd08f";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd"
+        "noatime"
+        "space_cache=v2"
+        "nofail"
+      ];
+    };
 
-  fileSystems."/mnt/arch-home" = {
-    device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd"
-      "noatime"
-      "nofail"
-    ];
-  };
+    "/mnt/arch-root" = {
+      device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
+      fsType = "btrfs";
+      options = [
+        "subvol=@"
+        "compress=zstd"
+        "noatime"
+        "nofail"
+      ];
+    };
 
-  fileSystems."/mnt/arch-boot" = {
-    device = "/dev/disk/by-uuid/76A3-4CC1";
-    fsType = "vfat";
-    options = [
-      "uid=1000"
-      "gid=100"
-      "umask=0077"
-      "nofail"
-    ];
+    "/mnt/arch-home" = {
+      device = "/dev/disk/by-uuid/3d3a5f2a-052f-4256-8e74-61cc2aa59781";
+      fsType = "btrfs";
+      options = [
+        "subvol=@home"
+        "compress=zstd"
+        "noatime"
+        "nofail"
+      ];
+    };
+
+    "/mnt/arch-boot" = {
+      device = "/dev/disk/by-uuid/76A3-4CC1";
+      fsType = "vfat";
+      options = [
+        "uid=1000"
+        "gid=100"
+        "umask=0077"
+        "nofail"
+      ];
+    };
   };
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
-  programs.xwayland.enable = true;
-  programs.zsh.enable = true;
-  programs.niri.enable = true;
-  # ydotoold backend for minecraft-autoclick.sh: synthesizes input via
-  # /dev/uinput, so it works regardless of window focus restrictions on
-  # synthetic Wayland input.
-  programs.ydotool.enable = true;
-  # Stable niri (niri-flake's default) predates the "include" directive
-  # (added Oct 2025) and "maximize-window-to-edges", both used in
-  # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.
-  programs.niri.package = pkgs.niri-unstable;
+  programs = {
+    xwayland.enable = true;
+    zsh.enable = true;
+    niri = {
+      enable = true;
+      # Stable niri (niri-flake's default) predates the "include" directive
+      # (added Oct 2025) and "maximize-window-to-edges", both used in
+      # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.
+      package = pkgs.niri-unstable;
+    };
+    # ydotoold backend for minecraft-autoclick.sh: synthesizes input via
+    # /dev/uinput, so it works regardless of window focus restrictions on
+    # synthetic Wayland input.
+    ydotool.enable = true;
+  };
 
   # The GNOME portal niri-flake installs delegates FileChooser to
   # org.gnome.portal.filechooser, which only a full GNOME session provides, so
@@ -137,21 +164,6 @@
   };
 
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
-  services.printing.enable = true;
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -190,19 +202,19 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+  programs = {
+    steam = {
+      enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
+    # fullscreen games assume origin (0,0); Xwayland puts DP-1 at y=1440
+    gamescope.enable = true;
   };
 
-  # fullscreen games assume origin (0,0); Xwayland puts DP-1 at y=1440
-  programs.gamescope.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
