@@ -25,6 +25,11 @@
       url = "github:Novattz/creamlinux-installer";
       flake = false;
     };
+
+    terrascope = {
+      url = "github:a-shygun/Terrascope";
+      flake = false;
+    };
   };
 
   outputs =
