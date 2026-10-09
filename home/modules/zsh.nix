@@ -35,7 +35,7 @@ _:
     shellAliases = {
       note = "nvim ~/.notes.md";
       nixos-rebuild-switch = "sudo nixos-rebuild switch --flake ~/nix-config#nixos-pc && nixos-needs-reboot";
-      nixos-upgrade = "sudo chown -R david ~/nix-config/.git/objects && (cd ~/nix-config && nix flake update) && sudo nixos-rebuild switch --flake ~/nix-config#nixos-pc && nixos-needs-reboot";
+      nixos-upgrade = "sudo chown -R david ~/nix-config/.git/objects && nh os switch -u -H nixos-pc ~/nix-config && nixos-needs-reboot";
     };
   };
 }

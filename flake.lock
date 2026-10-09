@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791484883,
-        "narHash": "sha256-iKxFHJrg7Sltwhq3ssCZYQ4CFEDVvReVVuVuO9dj3sE=",
+        "lastModified": 1791569574,
+        "narHash": "sha256-5sViLmjhTCtBTvhjSXXvd5LDrAFMydFFKZQisjE8Vds=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "dfadbe5162d5e86bc0808badec8f346f81b4b3f0",
+        "rev": "6b88c12cc6d234de4888f5d21076fb11199d0844",
         "type": "github"
       },
       "original": {
@@ -200,11 +200,11 @@
     "terrascope": {
       "flake": false,
       "locked": {
-        "lastModified": 1791387418,
-        "narHash": "sha256-KiKSxUa8zYHeKOlhHR9vhazpZZCQHAfwmNCF5UT9xjM=",
+        "lastModified": 1791538983,
+        "narHash": "sha256-dBTtxaDiSl2YDOeBCEXBMyxw8z6tC+g1ijx9EQzzl5w=",
         "owner": "a-shygun",
         "repo": "Terrascope",
-        "rev": "b5d65b5b65c418bea3a4172a455a49dfb9161bc0",
+        "rev": "a8ae073a03340f807b2cb17dcd9e2f1c7e7ebccf",
         "type": "github"
       },
       "original": {

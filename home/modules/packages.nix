@@ -22,6 +22,10 @@
     fd
     taplo
     difftastic
+    nvd
+    nix-diff
+    nix-tree
+    nh
     satty
     obsidian
     a2ps

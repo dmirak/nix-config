@@ -81,6 +81,11 @@ with editing this repo. Use them proactively, not just when asked:
 - `fd` — prefer over `find` for locating files in this repo.
 - `difftastic` (`difft`) — structural diff for reviewing changes,
   especially in Nix/TOML/JSON where a plain line diff is noisy.
+- `nvd diff /run/current-system ./result` — after `nixos-rebuild build`,
+  lists which packages were added/removed/changed by the change.
+- `nix-diff` — explains why two derivations differ.
+- `nix-tree` — interactive closure browser (why a package is included, size).
+- `nh` — front-end for rebuild/clean (`nh os build .`, `nh clean all`).
 
 ## Pins (don't casually bump)
 
