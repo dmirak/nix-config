@@ -31,5 +31,6 @@
     a2ps
     ghostscript
     gimp
+    depotdownloader
   ];
 }
