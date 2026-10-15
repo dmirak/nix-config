@@ -58,6 +58,7 @@
       openFirewall = true;
     };
     xserver.videoDrivers = [ "nvidia" ];
+    udisks2.enable = true;
   };
 
   hardware.printers = {

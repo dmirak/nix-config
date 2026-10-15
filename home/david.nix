@@ -23,6 +23,7 @@
     ./modules/terrascope.nix
     ./modules/minecraft-autoclick.nix
     ./modules/packages.nix
+    ./modules/udiskie.nix
   ];
 
   home = {
