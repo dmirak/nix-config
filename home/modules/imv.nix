@@ -30,6 +30,12 @@ in
     settings.Keywords = "photo;picture;";
   };
 
+  xdg.configFile."imv/config".text = ''
+    [binds]
+    <bracketleft> = rotate by -90
+    <bracketright> = rotate by 90
+  '';
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = lib.genAttrs imageTypes (_: "imv.desktop");
