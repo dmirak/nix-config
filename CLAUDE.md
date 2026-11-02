@@ -74,7 +74,7 @@ with editing this repo. Use them proactively, not just when asked:
 - `shellcheck` — lint any shell scripts under `dotfiles/scripts/` before
   handing them back.
 - `jq` — inspect/edit JSON dotfiles precisely (e.g.
-  `dotfiles/noctalia/settings.json`, `colors.json`) instead of freehand
+  `dotfiles/niri/*.json`) instead of freehand
   text edits.
 - `taplo` — lint/format TOML dotfiles (e.g.
   `dotfiles/yazi/flavors/noctalia.yazi/flavor.toml`).
@@ -92,8 +92,8 @@ with editing this repo. Use them proactively, not just when asked:
 - `niri` tracks `pkgs.niri-unstable` (via epireyn's niri-flake fork) because
   the stable release predates the `include` directive and
   `maximize-window-to-edges`, both used in `dotfiles/niri/*.kdl`.
-- `noctalia` is pinned to the `legacy-v4` branch; v5 (default branch) isn't
-  configured yet.
+- `noctalia` tracks the v5 default branch (C++ rewrite, TOML config in
+  `dotfiles/noctalia/config.toml`); v4 was `legacy-v4`.
 
 ## Conventions
 
@@ -118,7 +118,7 @@ tokens, API keys, passwords, private SSH keys, or other personal/identifying
 data. If a config needs a secret, keep it out of the repo (env var, local
 untracked file, agenix/sops, etc.) rather than hardcoding it.
 
-Example: noctalia's Wallhaven API key. `dotfiles/noctalia/settings.json`
+Example (v4 noctalia, no longer used): a Wallhaven API key. `settings.json`
 keeps `wallhavenApiKey` blank and stays fully tracked; the real key lives in
 `~/.config/noctalia/wallhaven-api-key` (untracked, chmod 600) and is passed
 via `NOCTALIA_WALLHAVEN_API_KEY`, set in `spawn-at-startup` in

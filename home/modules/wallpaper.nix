@@ -1,14 +1,10 @@
-{ config, ... }:
-let dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles"; in
+_:
 {
-  home.file.".local/bin/wallpaper-random.sh".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/scripts/wallpaper-random.sh";
-
   systemd.user.services.wallpaper-rotate = {
     Unit.Description = "Rotate wallpaper via Noctalia";
     Service = {
       Type = "oneshot";
-      ExecStart = "%h/.local/bin/wallpaper-random.sh";
+      ExecStart = "/bin/sh -c 'noctalia msg wallpaper-random'";
     };
   };
 

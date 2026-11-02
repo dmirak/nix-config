@@ -1,0 +1,87 @@
+[shell]
+font_family = "Liberation Sans"
+
+[theme]
+mode   = "dark"
+source = "wallpaper"
+wallpaper_scheme = "vibrant"
+
+[theme.templates]
+enable_builtin_templates = true
+builtin_ids = ["fuzzel", "discord", "niri", "steam", "yazi", "kitty", "btop"]
+
+[wallpaper]
+directory = "~/Pictures/Wallpapers"
+fill_mode = "crop"
+transition_duration = 1500
+
+[weather]
+enabled = true
+unit    = "fahrenheit"
+
+[idle.behavior.screen-off]
+timeout = 1800
+action  = "screen_off"
+enabled = true
+
+[dock]
+enabled       = true
+auto_hide     = true
+reserve_space = false
+
+[bar.default]
+position           = "top"
+thickness          = 34
+background_opacity = 0.93
+margin_ends        = 4
+margin_edge        = 4
+radius             = 12
+capsule            = true
+start  = ["launcher", "wallpaper", "clock", "cpu_temp", "cpu", "ram", "active_window", "media"]
+center = ["workspaces"]
+end    = ["tray", "notifications", "battery", "volume", "brightness", "control-center"]
+
+[widget.launcher]
+glyph = "rocket"
+
+[widget.clock]
+format         = "{:%-I:%M %p %a, %b %d}"
+tooltip_format = "{:%-I:%M %a, %b %d}"
+
+[widget.cpu_temp]
+type  = "sysmon"
+stat  = "cpu_temp"
+
+[widget.cpu]
+type  = "sysmon"
+stat  = "cpu_usage"
+
+[widget.ram]
+type  = "sysmon"
+stat  = "ram_used"
+
+[widget.active_window]
+max_length   = 145
+title_scroll = "on_hover"
+
+[widget.media]
+artist_first       = true
+max_length         = 145
+title_scroll       = "on_hover"
+hide_when_no_media = true
+
+[widget.workspaces]
+style        = "regular"
+label_source = "id"
+pill_scale   = 0.6
+labels_only_when_occupied = true
+
+[widget.volume.actions]
+middle = "exec pwvucontrol || pavucontrol"
+
+[shell.panel]
+open_near_click_control_center = true
+open_near_click_launcher       = true
+open_near_click_clipboard      = true
+open_near_click_wallpaper      = true
+open_near_click_session        = true
