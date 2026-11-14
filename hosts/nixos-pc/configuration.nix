@@ -179,6 +179,7 @@
   };
 
   security.rtkit.enable = true;
+  security.sudo.extraConfig = "Defaults timestamp_timeout=60";
 
   environment.systemPackages = with pkgs; [
     vim
