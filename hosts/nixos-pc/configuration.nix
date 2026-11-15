@@ -153,6 +153,7 @@
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   programs = {
+    nix-ld.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
     niri = {

@@ -24,6 +24,7 @@
     ./modules/minecraft-autoclick.nix
     ./modules/packages.nix
     ./modules/udiskie.nix
+    ./modules/gamedev.nix
   ];
 
   home = {
