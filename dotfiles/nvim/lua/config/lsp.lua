@@ -1,4 +1,4 @@
-vim.lsp.enable("nixd")
+vim.lsp.enable({ "nixd", "csharp_ls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
