@@ -6,7 +6,10 @@
     renderdoc
     tracy
     sfxr-qt
-    csharp-ls
+    (writeShellScriptBin "csharp-ls" ''
+      export PATH=${dotnetCorePackages.sdk_10_0}/bin:$PATH
+      exec ${csharp-ls}/bin/csharp-ls "$@"
+    '')
   ];
 
   programs.direnv = {
