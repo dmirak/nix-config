@@ -92,8 +92,9 @@ with editing this repo. Use them proactively, not just when asked:
 - `niri` tracks `pkgs.niri-unstable` (via epireyn's niri-flake fork) because
   the stable release predates the `include` directive and
   `maximize-window-to-edges`, both used in `dotfiles/niri/*.kdl`.
-- `noctalia` tracks the v5 default branch (C++ rewrite, TOML config in
-  `dotfiles/noctalia/config.toml`); v4 was `legacy-v4`.
+- `noctalia` comes from nixpkgs (v5, C++ rewrite, TOML config in
+  `dotfiles/noctalia/config.toml`) via home-manager's `programs.noctalia`;
+  it is not a flake input. v4 was `legacy-v4`.
 
 ## Conventions
 

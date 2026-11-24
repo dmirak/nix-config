@@ -38,8 +38,9 @@ Most programs are configured one of two ways:
   [epireyn's niri-flake fork](https://github.com/epireyn/niri-flake),
   because the stable release predates the `include` directive and
   `maximize-window-to-edges`, both used in `dotfiles/niri/*.kdl`.
-- `noctalia-shell` tracks the v5 default branch (C++ rewrite, TOML config in
-  `dotfiles/noctalia/config.toml`); v4 was `legacy-v4`.
+- `noctalia` comes from nixpkgs (v5, C++ rewrite, TOML config in
+  `dotfiles/noctalia/config.toml`) via home-manager's `programs.noctalia`;
+  it is not a flake input.
 
 ## Building
 

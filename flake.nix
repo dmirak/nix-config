@@ -14,18 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     creamlinux = {
       url = "github:Novattz/creamlinux-installer";
-      flake = false;
-    };
-
-    terrascope = {
-      url = "github:a-shygun/Terrascope";
       flake = false;
     };
   };
@@ -36,7 +26,6 @@
       nixpkgs,
       home-manager,
       niri,
-      noctalia,
       ...
     }:
     {
