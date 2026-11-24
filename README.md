@@ -3,10 +3,6 @@
 My personal NixOS flake config. [Niri](https://github.com/YaLTeR/niri)/Wayland desktop, themed with
 [noctalia-shell](https://github.com/noctalia-dev/noctalia-shell).
 
-This is posted for reference, not as a template — `hardware-configuration.nix`
-is specific to my machine, and some choices (pinned forks, personal keybinds)
-won't make sense outside my setup.
-
 ## Layout
 
 ```
