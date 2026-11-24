@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      url = "github:epireyn/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     creamlinux = {
       url = "github:Novattz/creamlinux-installer";
       flake = false;
@@ -25,7 +20,6 @@
       self,
       nixpkgs,
       home-manager,
-      niri,
       ...
     }:
     {
@@ -34,7 +28,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/nixos-pc/configuration.nix
-          niri.nixosModules.niri
           home-manager.nixosModules.home-manager
           {
             home-manager = {

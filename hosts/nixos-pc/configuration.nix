@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -150,18 +149,13 @@
     };
   };
 
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-
   programs = {
     nix-ld.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
     niri = {
       enable = true;
-      # Stable niri (niri-flake's default) predates the "include" directive
-      # (added Oct 2025) and "maximize-window-to-edges", both used in
-      # dotfiles/niri/{config,noctalia}.kdl. Track niri's main branch instead.
-      package = pkgs.niri-unstable;
+      useNautilus = false;
     };
     # ydotoold backend for minecraft-autoclick.sh: synthesizes input via
     # /dev/uinput, so it works regardless of window focus restrictions on
@@ -169,15 +163,7 @@
     ydotool.enable = true;
   };
 
-  # The GNOME portal niri-flake installs delegates FileChooser to
-  # org.gnome.portal.filechooser, which only a full GNOME session provides, so
-  # every save/open dialog silently fails. Hand that one interface to the GTK
-  # portal and leave the rest (screencast, etc.) with GNOME.
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.niri = {
-    default = [ "gnome" ];
-    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-  };
 
   security.rtkit.enable = true;
   security.sudo.extraConfig = "Defaults timestamp_timeout=60";

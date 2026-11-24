@@ -87,14 +87,12 @@ with editing this repo. Use them proactively, not just when asked:
 - `nix-tree` — interactive closure browser (why a package is included, size).
 - `nh` — front-end for rebuild/clean (`nh os build .`, `nh clean all`).
 
-## Pins (don't casually bump)
+## Pins
 
-- `niri` tracks `pkgs.niri-unstable` (via epireyn's niri-flake fork) because
-  the stable release predates the `include` directive and
-  `maximize-window-to-edges`, both used in `dotfiles/niri/*.kdl`.
-- `noctalia` comes from nixpkgs (v5, C++ rewrite, TOML config in
-  `dotfiles/noctalia/config.toml`) via home-manager's `programs.noctalia`;
-  it is not a flake input. v4 was `legacy-v4`.
+No flake inputs are pinned for niri or noctalia: both come from nixpkgs
+(`programs.niri` in `configuration.nix`, `programs.noctalia` in
+`home/modules/noctalia.nix`). The only non-nixpkgs input is `creamlinux`
+(unpackaged, used via its own `package.nix`).
 
 ## Conventions
 
