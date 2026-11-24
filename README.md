@@ -38,8 +38,8 @@ Most programs are configured one of two ways:
   [epireyn's niri-flake fork](https://github.com/epireyn/niri-flake),
   because the stable release predates the `include` directive and
   `maximize-window-to-edges`, both used in `dotfiles/niri/*.kdl`.
-- `noctalia-shell` is pinned to the `legacy-v4` branch; v5 (default branch)
-  isn't configured here yet.
+- `noctalia-shell` tracks the v5 default branch (C++ rewrite, TOML config in
+  `dotfiles/noctalia/config.toml`); v4 was `legacy-v4`.
 
 ## Building
 
@@ -47,8 +47,11 @@ Most programs are configured one of two ways:
 # dry-run — builds the system without switching, no sudo needed
 nixos-rebuild build --flake .
 
-# apply
-sudo nixos-rebuild switch --flake .#nixos-pc
+# apply (zsh alias for sudo nixos-rebuild switch --flake ~/nix-config#nixos-pc)
+nixos-rebuild-switch
+
+# update flake inputs and apply (zsh alias, uses nh)
+nixos-upgrade
 ```
 
 ## Secrets
